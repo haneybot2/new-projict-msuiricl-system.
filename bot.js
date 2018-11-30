@@ -49,6 +49,16 @@ msg.edit('**:arrows_counterclockwise: | Bot Restarting....**');
 },2000);
 });
 
+
+console.log(`${message.author.tag} [ ${message.author.id} ] has restarted the bot.`);
+console.log(`Restarting..`);
+setTimeout(() => {
+client.destroy();
+client.login(process.env.BOT_TOKEN);
+},3000);
+}
+});
+
 const swearWords = ["خول", "علي زبي", "كس امكم", "يلعن شكلك", "كس امك", "اكس امك", "زبي", "يلعن", "كلب" ];
 client.on('message', message => {
   if (swearWords.some(word => message.content.includes(word)) ) {
@@ -78,14 +88,6 @@ Server Members :  ${message.guild.memberCount - message.guild.members.filter(m=>
 
     }
       });
-console.log(`${message.author.tag} [ ${message.author.id} ] has restarted the bot.`);
-console.log(`Restarting..`);
-setTimeout(() => {
-client.destroy();
-client.login(process.env.BOT_TOKEN);
-},3000);
-}
-});
 
 client.on('guildCreate', gc =>{
     if(gc.id !== '294805996893896705'){
