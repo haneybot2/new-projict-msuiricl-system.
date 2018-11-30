@@ -174,6 +174,39 @@ if (!message.content.startsWith(prefix)) return;
   }
   });
 
+client.on('message', async message => {
+	let cmd = message.content.splite(' ')[0];
+	cmd = cmd.slice(prefix.length);
+	let args = message.content.split(" ");
+	if(cmd === 'vkick') {
+	  if (!message.guild.member(message.author).hasPermission('MANAGE_CHANNELS')) return;
+
+  let vuser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+  let vKuser = message.mentions.users.first()|| client.users.get(message.content.split(' ')[1])
+  if(!vKuser) return message.channel.send(`:information_source: **\`${prefix}ban @َζ͜͡ELMEWAL3\` يجب تحديد شخص**.`);
+  if(vKuser.id === message.author.id) return message.channel.send('!!**لا يمكنك طرد نفسك صوتيا**');
+  if(vKuser.id === message.guild.owner.id) return message.channel.send(':x: **لطيفة حاول يا صاح** \:D');
+  if(vuser.hasPermission("MANAGE_MESSAGES")) return message.channel.send('!**اسف ,ولكن لا يمكنك طرد احد من الاداره صوتياه** :expressionless:');
+  if(!vKuser.voiceChannel) return message.channel.send('**اسف ,ولكن العضو ليس في روم صوتي**');
+  const embed = new Discord.RichEmbed()
+    .setColor("BLACK")
+    .setAuthor(vKuser.username, vKuser.displayAvatarURL)
+    .setThumbnail(vKuser.displayAvatarURL)
+    .setDescription(`${vKuser} **was expelled by voice**`)
+    .addField('By :', message.author)
+    .setFooter(message.author.tag, message.author.displayAvatarURL)
+    .setTimestamp();
+
+  message.guild.createChannel('voicekick', 'voice').then(c => {
+    vKuser.setVoiceChannel(c).then(() => {
+      c.delete(305).catch(console.log)
+    });
+  });
+  message.channel.send(`:white_check_mark: **${vKuser} voice kicked!**`)
+  await client.channels.get(process.env.log).send(embed);
+	}
+					 
+});
 
 client.on('message', message => {
   if (message.author.kick) return;
