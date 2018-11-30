@@ -135,7 +135,7 @@ if (!message.content.startsWith(prefix)) return;
     
     let s = message.content.split(" ").slice(2).join(" ");
     if(!s) {
-      var reason = 'لا يوجد سبب'ك
+      var reason = 'لا يوجد سبب'
     } else {
     var reason = message.content.split(" ").slice(2).join(" ");
     }
