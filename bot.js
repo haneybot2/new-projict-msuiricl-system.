@@ -174,11 +174,14 @@ if (!message.content.startsWith(prefix)) return;
   }
   });
 
-client.on('message', async message => {
-	let cmd = message.content.splite(' ')[0];
-	cmd = cmd.slice(prefix.length);
+client.on('message', message => {
+  if (message.author.kick) return;
+  if (!message.content.startsWith(prefix)) return;
+ 
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
 	let args = message.content.split(" ");
-	if(cmd === 'vkick') {
+	if(command === 'vkick') {
 	  if (!message.guild.member(message.author).hasPermission('MANAGE_CHANNELS')) return;
 
   let vuser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
