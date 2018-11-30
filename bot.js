@@ -5,6 +5,7 @@ const dev = process.env.id1;
 const id = [process.env.id1, process.env.id2, process.env.id3, process.env.id4];
 const ms = require("ms");
 const fs = require('fs');
+const moment = require("moment"); 
 const googl = require('goo.gl');
 const child_process = require("child_process");
 client.on('ready', () => {
@@ -64,7 +65,25 @@ client.on('message', message => require('./commands/bc/obc.js')(client, message)
 client.on('message', message => require('./commands/bc/bcrole.js')(client, message));
 client.on('message', message => require('./commands/role.js')(client, message));
 client.on('message', message => require('./commands/show-hide.js')(client, message));
+client.on('guildMemberAdd', member => {
+    member.addRole(member.guild.roles.find("name","Miracle"));
+});
 
+
+client.on("guildMemberAdd", m => {
+    if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 8) {
+        m.ban();
+    };
+});
+
+function parseDate(str) {
+    var mdy = str.split('/');
+    return new Date(mdy[2], mdy[0]-1, mdy[1]);
+};
+
+function datediff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
+};
 
 const swearWords = ["خول", "علي زبي", "كس امكم", "يلعن شكلك", "كس امك", "اكس امك", "زبي", "يلعن", "كلب" ];
 client.on('message', message => {
