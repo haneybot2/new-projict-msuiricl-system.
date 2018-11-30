@@ -174,7 +174,7 @@ if (!message.content.startsWith(prefix)) return;
   }
   });
 
-client.on('message', message => {
+client.on('message', async message => {
   if (message.author.kick) return;
   if (!message.content.startsWith(prefix)) return;
  
