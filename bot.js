@@ -200,11 +200,11 @@ client.on('message', async message => {
     .setFooter(message.author.tag, message.author.displayAvatarURL)
     .setTimestamp();
 
-  message.guild.createChannel('voicekick', 'voice').then(c => {
-    vKuser.setVoiceChannel(c).then(() => {
-      c.delete(305).catch(console.log)
-    });
-  });
+              message.guild.createChannel('voicekick', 'voice').then(c => {
+                member.setVoiceChannel(c).then(() => {
+                    c.delete(305).catch(console.log)
+      });
+     });
   message.channel.send(`:white_check_mark: **${vKuser} voice kicked!**`)
   await client.channels.get(process.env.log).send(embed);
 	}
