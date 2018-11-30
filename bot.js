@@ -59,6 +59,13 @@ client.login(process.env.BOT_TOKEN);
 }
 });
 
+client.on('message', message => require('./commands/bc/bc.js')(client, message));
+client.on('message', message => require('./commands/bc/obc.js')(client, message));
+client.on('message', message => require('./commands/bc/bcrole.js')(client, message));
+client.on('message', message => require('./commands/role.js')(client, message));
+client.on('message', message => require('./commands/show-hide.js')(client, message));
+
+
 const swearWords = ["خول", "علي زبي", "كس امكم", "يلعن شكلك", "كس امك", "اكس امك", "زبي", "يلعن", "كلب" ];
 client.on('message', message => {
   if (swearWords.some(word => message.content.includes(word)) ) {
