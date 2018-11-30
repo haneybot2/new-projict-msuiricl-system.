@@ -227,7 +227,7 @@ client.on('message', message => {
     let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   
-    if (user < 1) return message.channel.send(`:information_source: **\`\` ${prefix}ban @َζ͜͡ELMEWAL3\`\` يجب تحديد شخص **`);
+    if (!user) return message.channel.send(`:information_source: **\`\` ${prefix}ban @َζ͜͡ELMEWAL3\`\` يجب تحديد شخص **`);
   if (!reason) reason = 'No reason provided.';
  if(user.id === message.author.id) return message.channel.send(':x: | **لا يمكنك حظر نفسك ._.**');
  
@@ -265,7 +265,7 @@ client.on('message', message => {
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
  
-  if (user < 1) return message.channel.send(`:information_source: **\`\` ${prefix}kick @َζ͜͡ELMEWAL3\`\` يجب تحديد شخص **`);
+  if (!user) return message.channel.send(`:information_source: **\`\` ${prefix}kick @َζ͜͡ELMEWAL3\`\` يجب تحديد شخص **`);
   if (!reason) reason = 'No reason provided.';
  if(user.id === message.author.id) return message.channel.send(':x: | **لا يمكنك طرد نفسك ._.**');
  if(user.id === message.guild.owner.id) return message.channel.send(':x: | **لطيفة حاول يا صاح \:D**');
