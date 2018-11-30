@@ -189,7 +189,8 @@ client.on('message', async message => {
   if(!vKuser) return message.channel.send(`:information_source: **\`${prefix}ban @َζ͜͡ELMEWAL3\` يجب تحديد شخص**.`);
   if(vKuser.id === message.author.id) return message.channel.send('!!**لا يمكنك طرد نفسك صوتيا**');
   if(vKuser.id === message.guild.owner.id) return message.channel.send(':x: **لطيفة حاول يا صاح** \:D');
-  if(!vKuser.voiceChannel) return message.channel.send('**اسف ,ولكن العضو ليس في روم صوتي**');
+		var member = message.guild.members.get(message.mentions.users.array()[0].id);
+		        if(!member.voiceChannel) return message.channel.send('**اسف ,ولكن العضو ليس في روم صوتي**');
   const embed = new Discord.RichEmbed()
     .setColor("BLACK")
     .setAuthor(vKuser.username, vKuser.displayAvatarURL)
