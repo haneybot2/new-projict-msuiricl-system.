@@ -89,7 +89,7 @@ const swearWords = ["خول", "علي زبي", "كس امكم", "يلعن شكل
 client.on('message', message => {
   if (swearWords.some(word => message.content.includes(word)) ) {
     message.reply("مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ").then(sentMessage =>{
-      sentMessage.delete(20000)
+      sentMessage.delete(2000)
     })
     message.delete(1000)
     client.channels.get(process.env.log).send(message.author.toString() + "استخدم كلام لا يليق ~")
@@ -188,7 +188,7 @@ if (!message.content.startsWith(prefix)) return;
   		if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send(":x:** | للاداره فقط**").then(msg => msg.delete(5000));
 		if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.channel.send("**I Don't Have Permissions**").then(msg => msg.delete(5000));
     
-      let toMute = message.mentions.users.first() || message.guild.members.get(message.content.split(' ')[1]);
+      let toMute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
   if(!toMute) return message.channel.send(`:information_source:  **\`\`${prefix}unmute @َζ͜͡ELMEWAL3 ヅ\`\` يجب تحديد شخص **`);
   
     let role = message.guild.roles.find (r => r.name === "Muted");
