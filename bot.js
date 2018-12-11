@@ -187,7 +187,7 @@ if (!message.content.startsWith(prefix)) return;
   		if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send(":x:** | للاداره فقط**").then(msg => msg.delete(5000));
 		if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.channel.send("**I Don't Have Permissions**").then(msg => msg.delete(5000));
     
-      let toMute = message.mentions.users.first();
+      let toMute = message.mentions.users.first()|| client.users.get(args[0])
   if(!toMute) return message.channel.send(`:information_source:  **\`\`${prefix}unmute @َζ͜͡ELMEWAL3 ヅ\`\` يجب تحديد شخص **`);
   
     let role = message.guild.roles.find (r => r.name === "Muted");
