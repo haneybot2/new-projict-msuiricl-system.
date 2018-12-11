@@ -142,7 +142,6 @@ client.on('voiceStateUpdate', (old, now) => {
   if (!size) return channel.setName(`Miracle Online: [${currentSize}]`);
   if (currentSize !== size) channel.setName(`Miracle Online: [${currentSize}]`);
 });
-
 client.on('message', async message =>{
   if (message.author.boss) return;
 if (!message.content.startsWith(prefix)) return;
@@ -193,10 +192,10 @@ if (!message.content.startsWith(prefix)) return;
   
     let role = message.guild.roles.find (r => r.name === "Muted");
 
-  if(!role || !toMute.roles.has(role.id)) return message.channel.send(`:information_source:**  ${user.username} تم فك الميوت عنه مسبقاً! **`)
+  if(!role || !toMute.roles.has(role.id)) return message.channel.send(`:information_source:**  ${toMute.users.username} تم فك الميوت عنه مسبقاً! **`)
   
   toMute.removeRole(role)
-  message.channel.send(`**:white_check_mark: | ${toMute.username} Unmuted :smiley:**`);
+  message.channel.send(`**:white_check_mark: | ${toMute.users.username} Unmuted :smiley:**`);
   }
   });
 
