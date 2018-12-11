@@ -187,15 +187,15 @@ if (!message.content.startsWith(prefix)) return;
   		if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send(":x:** | للاداره فقط**").then(msg => msg.delete(5000));
 		if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.channel.send("**I Don't Have Permissions**").then(msg => msg.delete(5000));
     
-      let toMute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+      let toMute = message.mentions.users.first();
   if(!toMute) return message.channel.send(`:information_source:  **\`\`${prefix}unmute @َζ͜͡ELMEWAL3 ヅ\`\` يجب تحديد شخص **`);
   
     let role = message.guild.roles.find (r => r.name === "Muted");
 
-  if(!role || !toMute.roles.has(role.id)) return message.channel.send(`:information_source:**  ${toMute.users.username} تم فك الميوت عنه مسبقاً! **`)
+  if(!role || !toMute.roles.has(role.id)) return message.channel.send(`:information_source:**  ${toMute.username} تم فك الميوت عنه مسبقاً! **`)
   
   toMute.removeRole(role)
-  message.channel.send(`**:white_check_mark: | ${toMute.users.username} Unmuted :smiley:**`);
+  message.channel.send(`**:white_check_mark: | ${toMute.username} Unmuted :smiley:**`);
   }
   });
 
